@@ -15,7 +15,7 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 app.use(cors())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(routes)
 app.use(passport.initialize())
 require('./config/passport')(passport)

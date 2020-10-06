@@ -44,7 +44,7 @@ var functions = {
                 })
             }
             else {
-                User.comparePassword(req.body.password, function (err, isMatch) {
+                user.comparePassword(req.body.password, function (err, isMatch) {
                     if(isMatch && !err) {
                         var token = jwt.encode(user, config.secret)
                         res.json({
@@ -63,8 +63,8 @@ var functions = {
         })
     },
     getinfo: function(req,res) {
-        if(req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-            var token = req.headers.authorization.split(' ')[1]
+        if(req.headers.authorization) {
+            var token = req.headers.authorization
             var decodedtoken = jwt.decode(token, config.secret)
             return res.json({
                 success: true,
