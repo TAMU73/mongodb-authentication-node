@@ -1,6 +1,7 @@
 var User = require('../model/user')
 var jwt = require('jwt-simple')
 var config = require('../config/dbconfig')
+var { authenticate } = require('passport')
 
 var functions = {
     addNew: function (req, res) {
