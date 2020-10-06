@@ -19,11 +19,11 @@ router.post('/add_user', actions.addNew)
 router.post('/authenticate', actions.authenticate)
 
 //@desc Get info of a user
-//@route GET /getinfo
+//@route GET /get_info
 router.get('/get_info', actions.getinfo)
 
 //@desc Get info of a user
-//@route GET /getinfo
+//@route GET /get_users
 router.get('/get_users', actions.getusers)
 
 module.exports = router
