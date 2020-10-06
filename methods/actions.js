@@ -1,7 +1,6 @@
 var User = require('../model/user')
 var jwt = require('jwt-simple')
 var config = require('../config/dbconfig')
-const { authenticate } = require('passport')
 
 var functions = {
     addNew: function (req, res) {
@@ -26,7 +25,7 @@ var functions = {
                 else{
                     res.json({
                         success: true,
-                        msg: 'Successfully Saved'
+                        msg: 'Successfully Saved',
                     })
                 }
             })
@@ -44,7 +43,7 @@ var functions = {
                 })
             }
             else {
-                user.comparePassword(req.body.password, function (err, isMatch) {
+                User.comparePassword(req.body.password, function (err, isMatch) {
                     if(isMatch && !err) {
                         var token = jwt.encode(user, config.secret)
                         res.json({
@@ -77,6 +76,14 @@ var functions = {
                 msg: 'No Headers'
             })
         }
+    },
+    getusers: function(req,res) {
+        User.find({}, function(err, users) {
+            if(err) throw err
+            else {
+                res.send(users)
+            }
+        })
     }
 }
 
