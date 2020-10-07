@@ -66,9 +66,11 @@ var functions = {
         if(req.headers.authorization) {
             var token = req.headers.authorization
             var decodedtoken = jwt.decode(token, config.secret)
+            var name = decodedtoken.name
             return res.json({
                 success: true,
-                msg: 'Hello '+ decodedtoken.name
+                name: name,
+                msg: 'Hello '+ name
             })
         }
         else {
